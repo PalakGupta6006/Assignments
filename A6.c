@@ -1,18 +1,16 @@
+//Tic-tac-toe
 #include <stdio.h>
 
-char board[3][3];  // 3x3 game board
+char board[3][3];  
 char currentPlayer = 'X';
-
-// Function to initialize the game board
 void initializeBoard() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            board[i][j] = ' ';  // Empty space
+            board[i][j] = ' ';  
         }
     }
 }
 
-// Function to display the current game board
 void displayBoard() {
     printf("\n");
     for (int i = 0; i < 3; i++) {
@@ -26,31 +24,26 @@ void displayBoard() {
     printf("\n");
 }
 
-// Function to check if the current player has won
 int checkWin() {
-    // Check rows and columns
     for (int i = 0; i < 3; i++) {
         if (board[i][0] == currentPlayer && board[i][1] == currentPlayer && board[i][2] == currentPlayer) return 1;
         if (board[0][i] == currentPlayer && board[1][i] == currentPlayer && board[2][i] == currentPlayer) return 1;
     }
- // Check diagonals
     if (board[0][0] == currentPlayer && board[1][1] == currentPlayer && board[2][2] == currentPlayer) return 1;
     if (board[0][2] == currentPlayer && board[1][1] == currentPlayer && board[2][0] == currentPlayer) return 1;
 
     return 0;
 }
 
-// Function to check if the board is full (i.e., it's a tie)
 int checkTie() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (board[i][j] == ' ') return 0;  // Board is not full yet
+            if (board[i][j] == ' ') return 0;  
         }
     }
-    return 1;  // Tie condition
+    return 1;  
 }
 
-// Function to make a move
 void makeMove() {
     int row, col;
     printf("Player %c, enter your move (row and column: 0-2): ", currentPlayer);
@@ -64,7 +57,7 @@ void makeMove() {
         }
     }
 }
-// Main function to control the flow of the game
+
 int main() {
     int gameOver = 0;
     initializeBoard();
@@ -73,7 +66,6 @@ int main() {
         displayBoard();
         makeMove();
 
-        // Check for win or tie
         if (checkWin()) {
             displayBoard();
             printf("Player %c wins!\n", currentPlayer);
@@ -83,7 +75,6 @@ int main() {
             printf("It's a tie!\n");
             gameOver = 1;
         } else {
-            // Switch players
             currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
         }
     }
